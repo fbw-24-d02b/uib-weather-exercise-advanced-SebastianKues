@@ -1,0 +1,316 @@
+:root {
+  font-family: sans-serif;
+
+  --col-bg-dark: rgb(36 36 36);
+  --col-text-dark: rgb(240 240 240);
+  --col-bg-head: blue;
+  --col-link-active: rgb(1, 1, 138);
+}
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+header {
+  background-color: var(--col-bg-head);
+
+  .head-top {
+    padding: 1rem;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 2rem;
+    color: white;
+
+    .site-name {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      span {
+        font-size: 1.5rem;
+      }
+    }
+
+    img {
+      width: 2rem;
+      aspect-ratio: 1;
+    }
+    .local {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 1rem;
+      .search-container {
+        display: flex;
+        border-radius: 5rem;
+        overflow: hidden;
+        border: 2px solid white;
+        input {
+          padding-left: 1rem;
+        }
+        button {
+          height: 2.5rem;
+          aspect-ratio: 1;
+          svg {
+            width: 1.5rem;
+            aspect-ratio: 1;
+            fill: var(--col-bg-head);
+          }
+          &:hover {
+            cursor: pointer;
+            background-color: var(--col-bg-head);
+            svg {
+              fill: var(--col-text-dark);
+            }
+          }
+          &:active {
+            background-color: var(--col-link-active);
+          }
+        }
+      }
+      .local-weather-card {
+        border: 2px solid white;
+        border-radius: 0.5rem;
+        padding: 0.5rem;
+      }
+    }
+  }
+  nav {
+    ul {
+      list-style-type: none;
+      display: flex;
+      flex-direction: column;
+      li a {
+        display: block;
+        background-color: var(--col-text-dark);
+        color: var(--col-bg-head);
+        padding: 1rem;
+        height: 3rem;
+        border: 1px solid var(--col-bg-head);
+        width: 100%;
+        text-decoration: none;
+
+        &:hover {
+          background-color: var(--col-bg-head);
+          color: var(--col-text-dark);
+        }
+        &:active {
+          background-color: var(--col-link-active);
+        }
+      }
+      @media screen and (min-width: 800px) {
+        flex-direction: row;
+        justify-content: center;
+        gap: .5rem;
+      }
+    }
+  }
+}
+
+footer {
+  background-color: var(--col-bg-dark);
+  color: var(--col-text-dark);
+  width: 100%;
+  padding: 1rem;
+  
+  position: fixed;
+  bottom: 0;
+  text-align: center;
+}
+
+.content {
+  
+  display: flex;
+  /* max-width: 90%; */
+  margin: auto;
+  margin-bottom: 5rem;
+  /* justify-items: center; */
+  flex-direction: column;
+  .commercial {
+    
+    order: 1;
+
+    background-color: var(--aside-bg-col, yellow);
+    color: var(--aside-text-col, red);
+    border-radius: 1rem;
+    border: 5px solid var(--aside-text-col, red);
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    span {
+      font-size: 3rem;
+      padding: 1rem;
+    }
+
+  }
+  @media screen and (min-width: 1000px) {
+    flex-direction: row;
+    .commercial {
+      order: 2;
+      grid-template-columns: 1fr;
+      max-width: 20rem;
+    }
+    .main-content {
+      order: 1;
+      min-width: 1000px;
+    }
+    justify-content: center;
+    gap: 2rem;
+  }
+  
+  .main-content {
+    order: 2;
+    max-width: 1000px;
+    .day-container {
+      width: 100%;
+      /* max-width: 800px; */
+      .morning-container, 
+      .afternoon-container,
+      .evening-container,
+      .night-container {
+        display: grid;
+        grid-template-rows: min-content 0fr;
+        justify-items: center;
+        overflow: hidden;
+        .hours-wrapper {
+          width: 90%;
+          overflow: hidden;
+        }
+        
+        
+        &:has(:checked) {
+          grid-template-rows: min-content 1fr;
+          /* .card-detail {
+            visibility: visible;
+          } */
+        }
+        transition: grid-template-rows 2s;
+      }
+    }
+    .week-container {
+      width: 100%;
+      /* max-width: 800px; */
+      .week-day-container {
+        display: grid;
+        grid-template-rows: min-content 0fr;
+        justify-items: center;
+        overflow: hidden;
+        .week-day-wrapper {
+          width: 90%;
+          overflow: hidden;
+        }
+        
+        
+        &:has(:checked) {
+          grid-template-rows: min-content 1fr;
+          /* .card-detail {
+            visibility: visible;
+          } */
+        }
+        transition: grid-template-rows 2s;
+      }
+    }
+    
+  }
+  .card-overview {
+    border: 1px solid var(--col-bg-head);
+    width: 100%;
+    padding: .5rem;
+    border-radius: 1rem;
+    display: grid;
+    gap: .25rem;
+    grid-template-columns: 1fr 1fr;
+    @media screen and (min-width: 600px) {
+      grid-template-columns: 1fr 1fr 1fr;
+    }
+    @media screen and (min-width: 801px) {
+      grid-template-columns: repeat(6, 1fr);
+    }
+    input[type="checkbox"] {
+      display: none;
+    }
+    div[class$="overview"] {
+      max-width: 15rem;
+      min-width: 10rem;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-content: center;
+      height: 4rem;
+      border-radius: .5rem;
+      background-color: var(--col-bg-head);
+      color: var(--col-text-dark);
+      padding-left: 1rem;
+    }
+    svg {
+      width: 2.5rem;
+      aspect-ratio: 1;
+      vertical-align: middle;
+      fill: var(--col-text-dark)
+    }
+    span {
+      display: inline-block;
+      font-size: 2rem;
+      sup {
+        font-size: 1rem;
+      }
+      padding-top: .5rem;
+    }
+    .weather-symbol-overview {
+      min-height: 6rem;
+            
+      svg {
+        width: 6rem;
+        
+      }
+    }
+  }
+  .card-detail {
+    /* visibility: hidden; */
+    border: 1px solid var(--col-bg-head);
+    width: 100%;
+    padding: .5rem;
+    overflow: hidden;
+    border-radius: 1rem;
+    display: grid;
+    gap: .25rem;
+    grid-template-columns: 1fr 1fr;
+
+    @media screen and (min-width: 600px) {
+      grid-template-columns: 1fr 1fr 1fr;
+    }
+    @media screen and (min-width: 801px) {
+      grid-template-columns: repeat(6, 1fr);
+    }
+    /* margin: auto; */
+    
+    div[class$="detail"] {
+      max-width: 13rem;
+      height: 3rem;
+      border-radius: .5rem;
+      background-color: var(--col-bg-head);
+      color: var(--col-text-dark);
+      padding-left: 1rem;
+    }
+    svg {
+      width: 2.0rem;
+      aspect-ratio: 1;
+      vertical-align: middle;
+      fill: var(--col-text-dark)
+    }
+    span {
+      display: inline-block;
+      font-size: 1.0rem;
+      sup {
+        font-size: .8rem;
+      }
+      padding-top: .5rem;
+    }
+    .weather-symbol-detail {
+      min-height: 3rem;
+      
+      svg {
+        width: 3rem;
+      }
+    }
+  }
+
+}
